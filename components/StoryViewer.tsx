@@ -26,6 +26,11 @@ export default function StoryViewer({ storyData, onClose, onNext, onPrevious }: 
   const [progress, setProgress] = useState(0)
   const STORY_DURATION = 5000 // 5 seconds per story
 
+  // Reset story index when user changes
+  useEffect(() => {
+    setCurrentStoryIndex(0)
+  }, [storyData.username])
+
   useEffect(() => {
     setProgress(0)
     const interval = setInterval(() => {
@@ -76,6 +81,11 @@ export default function StoryViewer({ storyData, onClose, onNext, onPrevious }: 
   }
 
   const currentStory = storyData.stories[currentStoryIndex]
+
+  // Safety check to prevent errors
+  if (!currentStory) {
+    return null
+  }
 
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
