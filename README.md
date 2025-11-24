@@ -30,10 +30,28 @@ These credentials are displayed on the login screen for easy access.
 
 ## 📦 Installation
 
-1. Install dependencies:
+1. Clone the repository:
+```bash
+git clone https://github.com/Lkoenig2121/instagram-clone.git
+cd instagram-clone
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
+
+3. Set up environment variables:
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and change `JWT_SECRET` to a secure random string:
+```
+JWT_SECRET=your-secure-random-string-here
+```
+
+**⚠️ IMPORTANT:** Never commit the `.env` file to Git! It contains sensitive secrets.
 
 ## 🏃‍♂️ Running the Application
 
@@ -133,6 +151,37 @@ const users = [
 ### Adding More Posts
 
 Edit `server/index.ts` and add posts to the `posts` array.
+
+## 🔒 Security
+
+### Environment Variables
+
+This project uses environment variables to store sensitive information like JWT secrets. **Never commit your `.env` file to Git!**
+
+The `.env` file is already in `.gitignore` to prevent accidental commits.
+
+**To generate a secure JWT secret:**
+```bash
+# Using Node.js
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+# Or using OpenSSL
+openssl rand -hex 32
+```
+
+Then update your `.env` file with the generated secret.
+
+### Production Considerations
+
+Before deploying to production:
+1. Change `JWT_SECRET` to a strong, random value
+2. Use a real database instead of in-memory data
+3. Add password hashing for new user registrations
+4. Implement proper session management
+5. Add rate limiting to prevent brute force attacks
+6. Use HTTPS for all connections
+7. Implement CSRF protection
+8. Add input validation and sanitization
 
 ## 📝 API Endpoints
 

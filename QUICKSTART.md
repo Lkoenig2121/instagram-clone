@@ -6,12 +6,19 @@ If you're getting "Login failed" errors, it's because the backend server crashed
 
 ## Step-by-Step Setup
 
-### 1. Install Dependencies
+### 1. Set Up Environment Variables
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and change the `JWT_SECRET` to something secure!
+
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Kill Processes on Ports 3000 & 3001
+### 3. Kill Processes on Ports 3000 & 3001
 ```bash
 npx kill-port 3000 3001
 ```
@@ -21,7 +28,7 @@ Or use the restart script:
 ./restart.sh
 ```
 
-### 3. Start the Application
+### 4. Start the Application
 ```bash
 npm run dev
 ```
@@ -30,7 +37,7 @@ This single command starts BOTH:
 - Frontend (Next.js) on `http://localhost:3000`
 - Backend (Express) on `http://localhost:3001`
 
-### 3. Wait for Both Servers to Start
+### 5. Wait for Both Servers to Start
 
 You should see output like:
 ```
@@ -39,11 +46,11 @@ You should see output like:
 [1] 🚀 Server running on http://localhost:3001
 ```
 
-### 4. Open Your Browser
+### 6. Open Your Browser
 
 Go to: `http://localhost:3000`
 
-### 5. Login
+### 7. Login
 
 The login page will show a green "✅ Server is running" message when the backend is connected.
 
@@ -97,6 +104,8 @@ npm run dev:next
 
 ## ✅ Success Checklist
 
+- [ ] Environment variables set up (`.env` file created)
+- [ ] JWT_SECRET changed to something secure
 - [ ] Dependencies installed (`npm install`)
 - [ ] Backend server running (port 3001)
 - [ ] Frontend server running (port 3000)

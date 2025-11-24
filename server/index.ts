@@ -3,10 +3,19 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import dotenv from 'dotenv'
+
+// Load environment variables
+dotenv.config()
 
 const app = express()
-const PORT = 3001
-const JWT_SECRET = 'instagram-clone-secret-key-2024'
+const PORT = process.env.PORT || 3001
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-change-me'
+
+// Security check
+if (JWT_SECRET === 'fallback-secret-change-me') {
+  console.warn('⚠️  WARNING: Using fallback JWT secret. Set JWT_SECRET in .env file!')
+}
 
 // Middleware
 app.use(cors({
